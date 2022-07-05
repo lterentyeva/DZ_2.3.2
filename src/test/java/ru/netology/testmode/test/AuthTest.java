@@ -1,7 +1,6 @@
 package ru.netology.testmode.test;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.netology.testmode.data.UserInfo;
 
@@ -10,8 +9,6 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static ru.netology.testmode.data.DataGenerator.Registration.activeUser;
-import static ru.netology.testmode.data.DataGenerator.getRandomLogin;
-import static ru.netology.testmode.data.DataGenerator.getRandomPassword;
 
 class AuthTest {
 
@@ -24,7 +21,7 @@ class AuthTest {
     @Test
    // @DisplayName("Should successfully login with active registered user")
     void shouldSuccessfulLoginIfRegisteredActiveUser() {
-        UserInfo activeInfo = activeUser();
+        UserInfo activeInfo= activeUser();
         $("[data-test-id='login'] input").setValue(activeInfo.getLogin());
         $("[data-test-id='password'] input").setValue(activeInfo.getPassword());
         $("[data-test-id='action-login']").click();

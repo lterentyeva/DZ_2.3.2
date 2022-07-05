@@ -5,7 +5,8 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
-import ru.netology.testmode.data.UserInfo;
+
+
 
 import java.util.Locale;
 
@@ -26,7 +27,7 @@ public class DataGenerator {
     }
 
     private static void sendRequest(UserInfo user) {
-        DataGenerator.user = user;
+
         given()
          .spec(requestSpec)
          .body(user)
@@ -36,11 +37,11 @@ public class DataGenerator {
          .statusCode(200);
     }
 
-    public static String getRandomLogin() {
+    public static String getLogin() {
         return faker.name().username();
     }
 
-    public static String getRandomPassword() {
+    public static String getPassword() {
        return faker.internet().password();
     }
 
@@ -49,13 +50,13 @@ public class DataGenerator {
         }
 
         public static UserInfo activeUser() {
-            UserInfo user = new UserInfo(getRandomLogin(),getRandomPassword(),"active");
+            UserInfo user = new UserInfo(getLogin(),getPassword(),"active");
             sendRequest(user);
             return user;
         }
 
         public static UserInfo blockedUser() {
-          UserInfo user = new UserInfo(getRandomLogin(), getRandomPassword(), "blocked");
+          UserInfo user = new UserInfo(getLogin(), getPassword(), "blocked");
           sendRequest(user);
           return user;
         }
