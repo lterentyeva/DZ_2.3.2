@@ -1,11 +1,12 @@
 package ru.netology.testmode.test;
 
+import com.codeborne.selenide.Condition;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.netology.testmode.data.UserInfo;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static ru.netology.testmode.data.DataGenerator.Registration.activeUser;
@@ -19,13 +20,13 @@ class AuthTest {
     }
 
     @Test
-   // @DisplayName("Should successfully login with active registered user")
+    @DisplayName("Should successfully login with active registered user")
     void shouldSuccessfulLoginIfRegisteredActiveUser() {
         UserInfo activeInfo= activeUser();
         $("[data-test-id='login'] input").setValue(activeInfo.getLogin());
         $("[data-test-id='password'] input").setValue(activeInfo.getPassword());
         $("[data-test-id='action-login']").click();
-        $(".heading").shouldHave(text("Личный кабинет")).shouldBe(visible);
+        $(withText("Личный кабинет")).shouldBe(Condition.visible);
     }
 
    // @Test
