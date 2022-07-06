@@ -7,7 +7,6 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 
 
-
 import java.util.Locale;
 
 import static io.restassured.RestAssured.given;
@@ -29,12 +28,12 @@ public class DataGenerator {
     private static void sendRequest(UserInfo user) {
 
         given()
-         .spec(requestSpec)
-         .body(user)
-         .when()
-         .post("/api/system/users")
-         .then()
-         .statusCode(200);
+                .spec(requestSpec)
+                .body(user)
+                .when()
+                .post("/api/system/users")
+                .then()
+                .statusCode(200);
     }
 
     public static String getLogin() {
@@ -42,7 +41,7 @@ public class DataGenerator {
     }
 
     public static String getPassword() {
-       return faker.internet().password();
+        return faker.internet().password();
     }
 
     public static class Registration {
@@ -50,15 +49,15 @@ public class DataGenerator {
         }
 
         public static UserInfo activeUser() {
-            UserInfo user = new UserInfo(getLogin(),getPassword(),"active");
+            UserInfo user = new UserInfo(getLogin(), getPassword(), "active");
             sendRequest(user);
             return user;
         }
 
         public static UserInfo blockedUser() {
-          UserInfo user = new UserInfo(getLogin(), getPassword(), "blocked");
-          sendRequest(user);
-          return user;
+            UserInfo user = new UserInfo(getLogin(), getPassword(), "blocked");
+            sendRequest(user);
+            return user;
         }
     }
 
